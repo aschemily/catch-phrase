@@ -1,7 +1,61 @@
+
 .Game div {
-  border: 2px solid #000;
+  border: 1px solid #000;
+  width: 100%;
+  display: flex;
+  margin: 0;
+}
+
+.topMiddle, .middleMiddle, .bottomMiddle {
+  flex: 4;
+  height: 40px;
+  justify-content: center;
+  vertical-align: inherit;
+  /* display: inline; */
+}
+
+.topLeft, .middleLeft, .bottomLeft {
+  flex: 1;
+  justify-content: center;
+}
+
+.topRight, .middleRight, .bottomRight {
+  flex: 1;
+  justify-content: center;
 }
 
 .middleMiddle {
   background-color: #00f892;
 }
+
+.timer {
+  font-size: 1.5em;
+  margin: 0;
+}
+/******************* End of Middle *******************/
+
+
+/******************* End of Middle *******************/
+
+/* <div className="Game">
+  <h1> COMING FROM GAME </h1>
+  <h2>TIMER</h2>
+  <h3>{this.state.time}</h3>
+  <p>{this.state.minutes}:{this.state.seconds}</p>
+  <div className="top"> Top
+  </div>
+
+  <div className="middle">
+    <div className="middleLeft"> midleLeft </div>
+    <div className="middleMiddle">
+      {this.props.choice}
+     </div>
+    <div className="middleRight"> midleRight </div>
+  </div>
+
+  <div className="bottom">
+  {this.state.startBtn == true ?
+    <button onClick={this.startTimer}> Start </button> :
+    <button onClick={()=>this.props.choseRandom()}> Next </button>}
+  </div>
+</div> */

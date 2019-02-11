@@ -11,7 +11,11 @@ const CategoriesContainer = (props) =>{
 
   return (
     categories.map((category,i)=>{
-      return <CategoryCard catButtonHandler={props.catButtonHandler} key={i} category={category} />
+      return <CategoryCard
+        catButtonHandler={props.catButtonHandler}
+        key={i}
+        category={category}
+        />
     })
   )
 }

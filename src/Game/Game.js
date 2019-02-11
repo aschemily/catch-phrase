@@ -39,10 +39,12 @@ class Game extends Component {
     return (
       <div className="Game">
         <h1> COMING FROM GAME </h1>
-        <h2>TIMER</h2>
-        <h3>{this.state.time}</h3>
-        <p>{this.state.minutes}:{this.state.seconds}</p>
-        <div className="top"> Top
+        <div className="top">
+          <div className="topLeft"> topLeft </div>
+          <div className="topMiddle">
+            <h3 className="timer">{this.state.minutes}:{this.state.seconds}</h3>
+          </div>
+          <div className="topRight"> topRight </div>
         </div>
 
         <div className="middle">
@@ -50,13 +52,17 @@ class Game extends Component {
           <div className="middleMiddle">
             {this.props.choice}
            </div>
-          <div className="midldeRight"> midleRight </div>
+          <div className="middleRight"> midleRight </div>
         </div>
 
         <div className="bottom">
-        {this.state.startBtn == true ?
-          <button onClick={this.startTimer}> Start </button> :
-          <button onClick={()=>this.props.choseRandom()}> Next </button>}
+          <div className="bottomLeft"> Bottom Left </div>
+          <div className="bottomMiddle">
+            {this.state.startBtn == true ?
+            <button onClick={this.startTimer}> Start </button> :
+            <button onClick={()=>this.props.choseRandom()}> Next </button>}
+          </div>
+          <div className="bottomRight"> Bottom Right </div>
         </div>
       </div>
     );
