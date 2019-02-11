@@ -4,9 +4,9 @@ import CategoryCard from './CategoryCard'
 
 const CategoriesContainer = (props) =>{
   const categories = [
-    'movies',
-    'songs',
-    'celebrities'
+    'Movies',
+    'Songs',
+    'Celebrities'
   ]
 
   return (
