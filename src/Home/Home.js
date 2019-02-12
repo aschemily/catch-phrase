@@ -40,9 +40,16 @@ class Home extends Component {
   choseRandom = () => {
     let nonDisplayed = this.state.movies.filter(ele=>{ return ele.displayed === false})
     let randomEle = this.state.movies[Math.floor(Math.random() * this.state.movies.length)]
-
+    console.log(randomEle)
     randomEle.displayed = true;
-
+    // console.log(this.state.movies.indexOf(randomEle));
+    // this.state.movies.map(movie => {
+    //   if (movie.id === randomEle.id) {
+    //
+    //   }
+    // })
+    // console.log(this.state.movies);
+    // debugger
     this.setState({ choice: randomEle.title})
   }
 

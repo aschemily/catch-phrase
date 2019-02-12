@@ -5,20 +5,38 @@ import beep from './beep.mp3'
 class Game extends Component {
 
   state = {
-    minutes: '02',
-    seconds: '00',
+    minutes: '00',
+    seconds: '30',
+    timeNumber: 30,
     isOn: false,
     startBtn: true,
     scoreT1: 0,
     scoreT2: 0
   }
 
+  playAudio = (arg) =>{
+    let audio = new Audio(arg)
+    return audio.play()
+  }
 
+  newTimer = ()=>{
+    let timer = 3000;
+    let timer2 = 0;
+    setInterval(()=>{
+      timer2 = timer2 + 100
+      setInterval(()=>{
+        this.playAudio(beep)
+      }, (timer - timer2))
+    },1000)
+  }
 
   startTimer = ()=> {
     this.props.choseRandom()
     this.setState({ startBtn: false})
+    this.newTimer()
     this.interval = setInterval(()=>{
+      this.setState({ timeNumber: --this.state.timeNumber})
+      console.log(this.state.timeNumber);
       if(this.state.seconds < 1 && this.state.minutes > 0 ){
         this.setState({
           minutes: parseInt(this.state.minutes) - 1,
@@ -35,11 +53,6 @@ class Game extends Component {
         clearInterval(this.interval);
       }
     },1000)
-  }
-
-  playAudio = (arg) =>{
-    let audio = new Audio(arg)
-    audio.play()
   }
 
   team1UpScore = (e) =>{
