@@ -11,6 +11,7 @@ import songs from '../data/songs'
 class Home extends Component {
   state = {
     movies: [],
+    tvShows: [],
     songs: songs,
     celebrities: songs,
     choice:'',
@@ -31,6 +32,15 @@ class Home extends Component {
         this.setState({movies:[...this.state.movies,...movieTitles]})
       })
     }
+
+    fetch(`http://api.tvmaze.com/shows`)
+    .then(r => r.json())
+    .then(r =>{
+      const tvShowTitles = r.map(tvShow =>{
+        return {id: tvShow.id, title: tvShow.name, displayed: false}
+      })
+      this.setState({tvShows:[...this.state.tvShows,...tvShowTitles]})
+    })
   }
 
   catButtonHandler = (e) => {
@@ -58,7 +68,7 @@ class Home extends Component {
   }
 
   render() {
-    console.log('songs',this.state.songs)
+    console.log('songs',this.state.tvShows)
     return (
       <div className="Home">
         <h1>COMING FROM HOMEPAGE</h1>
