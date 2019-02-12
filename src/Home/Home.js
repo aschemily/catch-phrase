@@ -49,29 +49,32 @@ class Home extends Component {
 
   choseRandom = () => {
     let nonDisplayed = this.state.movies.filter(ele=>{ return ele.displayed === false})
-    let randomEle = this.state.movies[Math.floor(Math.random() * this.state.movies.length)]
-    console.log(randomEle)
+    let randomEle = nonDisplayed[Math.floor(Math.random() * (nonDisplayed.length - 1))]
+    //console.log(randomEle)
     randomEle.displayed = true;
     // console.log(this.state.movies.indexOf(randomEle));
-    // this.state.movies.map(movie => {
-    //   if (movie.id === randomEle.id) {
-    //
-    //   }
-    // })
-    // console.log(this.state.movies);
+    const newMovies = this.state.movies.map(movie => {
+      if (movie.id === randomEle.id) {
+        return {...movie, displayed: true}
+      } else {
+        return movie
+      }
+    })
+    //console.log(this.state.movies);
     // debugger
-    this.setState({ choice: randomEle.title})
+    this.setState({
+      movies: newMovies,
+      choice: randomEle.title
+    })
   }
 
-  startGame = (e) =>{
-    console.log('clicking e',e)
-  }
+
 
   render() {
-    console.log('songs',this.state.tvShows)
+  //  console.log('songs',this.state.tvShows)
     return (
       <div className="Home">
-        <h1>COMING FROM HOMEPAGE</h1>
+        <h1>CATCH PHRASE</h1>
         <TeamContainer/>
         <CategoriesContainer catButtonHandler={this.catButtonHandler} />
         {this.state.choice !== '' ?

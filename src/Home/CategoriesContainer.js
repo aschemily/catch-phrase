@@ -7,7 +7,8 @@ const CategoriesContainer = (props) =>{
     'Movies',
     'Songs',
     'Celebrities',
-    'Random'
+    'Random',
+    'TV Shows'
   ]
 
   return (

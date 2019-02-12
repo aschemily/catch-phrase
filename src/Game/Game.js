@@ -36,7 +36,7 @@ class Game extends Component {
     this.newTimer()
     this.interval = setInterval(()=>{
       this.setState({ timeNumber: --this.state.timeNumber})
-      console.log(this.state.timeNumber);
+    //  console.log(this.state.timeNumber);
       if(this.state.seconds < 1 && this.state.minutes > 0 ){
         this.setState({
           minutes: parseInt(this.state.minutes) - 1,
