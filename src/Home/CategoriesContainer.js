@@ -6,7 +6,8 @@ const CategoriesContainer = (props) =>{
   const categories = [
     'Movies',
     'Songs',
-    'Celebrities'
+    'Celebrities',
+    'Random'
   ]
 
   return (

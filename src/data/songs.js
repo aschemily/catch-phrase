@@ -1,4 +1,4 @@
-{id: 1, title: "ANYTHING IS POSSIBLE/EVERGREEN", artist: "WILL YOUNG"},
+const songs = [{id: 1, title: "ANYTHING IS POSSIBLE/EVERGREEN", artist: "WILL YOUNG"},
 {id: 2, title: "SOMEONE LIKE YOU", artist: "ADELE"},
 {id: 3, title: "UNCHAINED MELODY", artist: "GARETH GATES"},
 {id: 4, title: "I GOTTA FEELING", artist: "BLACK EYED PEAS"},
@@ -147,4 +147,6 @@
 {id: 147, title: "DON'T CHA", artist: "PUSSYCAT DOLLS FT BUSTA RHYMES"},
 {id: 148, title: "PAPARAZZI", artist: "LADY GAGA"},
 {id: 149, title: "APOLOGIZE", artist: "TIMBALAND PTS ONEREPUBLIC"},
-{id: 150, title: "AXEL F", artist: "CRAZY FROG"},
+{id: 150, title: "AXEL F", artist: "CRAZY FROG"}]
+
+export default songs

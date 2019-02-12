@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../Game.css';
+import beep from './beep.mp3'
 
 class Game extends Component {
 
@@ -8,7 +9,11 @@ class Game extends Component {
     seconds: '00',
     isOn: false,
     startBtn: true,
+    scoreT1: 0,
+    scoreT2: 0
   }
+
+
 
   startTimer = ()=> {
     this.props.choseRandom()
@@ -32,6 +37,32 @@ class Game extends Component {
     },1000)
   }
 
+  playAudio = (arg) =>{
+    let audio = new Audio(arg)
+    audio.play()
+  }
+
+  team1UpScore = (e) =>{
+    this.playAudio(beep)
+    this.setState({scoreT1: ++ this.state.scoreT1 })
+
+  }
+
+  team2UpScore = (e) =>{
+    this.setState({scoreT2: ++ this.state.scoreT2 })
+  }
+
+  team1DownScore = (e) =>{
+    this.setState({scoreT1: -- this.state.scoreT1 })
+  }
+
+  team2DownScore = (e) =>{
+
+    this.setState({scoreT2: -- this.state.scoreT2 })
+  }
+
+
+
 
   render() {
     //console.log(this.state.movies)
@@ -40,11 +71,19 @@ class Game extends Component {
       <div className="Game">
         <h1> COMING FROM GAME </h1>
         <div className="top">
-          <div className="topLeft"> topLeft </div>
+          <div className="topLeft">
+            <img onClick={this.team1UpScore} src={require("./iconUp.png")}/>
+            Team 1 Score: {this.state.scoreT1}
+            {this.state.scoreT1 > 0 ? <img onClick={this.team1DownScore} src={require("./iconDown.png")}/> : null}
+          </div>
           <div className="topMiddle">
             <h3 className="timer">{this.state.minutes}:{this.state.seconds}</h3>
           </div>
-          <div className="topRight"> topRight </div>
+          <div className="topRight">
+          <img onClick={this.team2UpScore} src={require("./iconUp.png")}/>
+          Team 2 Score: {this.state.scoreT2}
+          {this.state.scoreT2 > 0 ?<img onClick={this.team2DownScore} src={require("./iconDown.png")}/> : null}a
+        </div>
         </div>
 
         <div className="middle">

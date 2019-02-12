@@ -4,14 +4,20 @@ import TeamContainer from './TeamContainer'
 import CategoriesContainer from './CategoriesContainer'
 import Game from '../Game/Game'
 import Sound from 'react-sound';
+import songs from '../data/songs'
+
 //import { BrowserRouter as Router, Route, Link} from 'react-router-dom'
 
 class Home extends Component {
   state = {
     movies: [],
+    songs: songs,
+    celebrities: songs,
     choice:'',
     PLAYING: true
   }
+
+
 
   componentDidMount(){
     for(let i=1; i <11; i++){
@@ -45,6 +51,7 @@ class Home extends Component {
   }
 
   render() {
+    console.log('songs',this.state.songs)
     return (
       <div className="Home">
         <h1>COMING FROM HOMEPAGE</h1>
@@ -56,14 +63,6 @@ class Home extends Component {
             startGame={this.startGame}
             movies={this.state.movies}
             choseRandom={this.choseRandom}/> : null}
-            <Sound
-              url="cool_sound.mp3"
-              playStatus={Sound.status.PLAYING}
-              playFromPosition={300 /* in milliseconds */}
-              onLoading={this.handleSongLoading}
-              onPlaying={this.handleSongPlaying}
-              onFinishedPlaying={this.handleSongFinishedPlaying}
-            />
       </div>
     );
   }
