@@ -160,23 +160,23 @@ playAudio = (arg) =>{
 
         <div className="middle">
           <div className="middleLeft"> midleLeft </div>
-      
+
           <div id="popUp" className="middleMiddle">
             {this.state.displaying}
            </div>
-          
+
           <div className="middleRight"> midleRight </div>
         </div>
 
         <div className="bottom">
           <div className="bottomLeft"> Bottom Left </div>
-          <Modal trigger={
+
           <div id="popUp" className="bottomMiddle">
             {this.state.startBtn == true ?
             <button name="start" onClick={this.startTimer}> Start </button> :
             <button name="next" onClick={()=>this.choseRandom()}> Next </button>}
-          </div>} >
-        </Modal>     
+          </div>} 
+
 
           <div className="bottomRight"> Bottom Right </div>
         </div>

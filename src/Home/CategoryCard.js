@@ -6,11 +6,14 @@ import { Card, Icon, Image } from 'semantic-ui-react'
 const CategoryCard = (props) =>{
 
   return (
-    <div id="categoryCard"className="center aligned ui five column grid">
-      <div className="column">
-    <Card itemsPerRow={10}>
-    <Card.Content onClick={e=>props.catButtonHandler(e)} >
-      <Card.Header><Image size="mini" src={props.category.img} />{props.category.name.toUpperCase()}</Card.Header>
+    <div  name={props.category.name}  id="categoryCard"className="center aligned ui five column grid">
+      <div name={props.category.name} className="column">
+    <Card name={props.category.name} itemsPerRow={10} onClick={e=>props.catButtonHandler(e)}>
+    <Card.Content  name={props.category.name} >
+      <Card.Header name={props.category.name}>
+        <Image name={props.category.name} size="large" src={props.category.img} />
+        {props.category.name}
+      </Card.Header>
     </Card.Content>
   </Card>
     </div>
