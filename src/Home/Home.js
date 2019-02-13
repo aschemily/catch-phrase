@@ -20,7 +20,7 @@ catButtonHandler = (e) => {
   render() {
     return (
       <div className="Home">
-        <h1>CATCH PHRASE</h1>
+        <h1 id="title">CATCH PHRASE</h1>
         <CategoriesContainer catButtonHandler={this.catButtonHandler} />
         {this.state.choice !== '' ?
           <Game
