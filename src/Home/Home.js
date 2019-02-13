@@ -12,7 +12,9 @@ class Home extends Component {
 
 /************** HANDLER CATEGORIES BUTTONS **************/
 catButtonHandler = (e) => {
-  this.setState({ choice: e.target.name })
+  e.target.name ?
+    this.setState({ choice: e.target.name })
+    : alert("please click the image")
 }
 
   render() {
