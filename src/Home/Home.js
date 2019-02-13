@@ -48,11 +48,14 @@ class Home extends Component {
   }
 
   choseRandom = () => {
+    const choice = this.state.choice
+    const array = this.state["choice"]
+    console.log('array', array)
     let nonDisplayed = this.state.movies.filter(ele=>{ return ele.displayed === false})
     let randomEle = nonDisplayed[Math.floor(Math.random() * (nonDisplayed.length - 1))]
     //console.log(randomEle)
     randomEle.displayed = true;
-    // console.log(this.state.movies.indexOf(randomEle));
+    // console.log(this.state["choice"].indexOf(randomEle));
     const newMovies = this.state.movies.map(movie => {
       if (movie.id === randomEle.id) {
         return {...movie, displayed: true}
@@ -60,27 +63,26 @@ class Home extends Component {
         return movie
       }
     })
-    //console.log(this.state.movies);
+    //console.log(this.state["choice"]);
     // debugger
     this.setState({
-      movies: newMovies,
+    ["choice"]: newMovies,
       choice: randomEle.title
     })
   }
 
 
-
   render() {
+    //startGame={this.startGame}
   //  console.log('songs',this.state.tvShows)
     return (
       <div className="Home">
-        <h1>CATCH PHRASE</h1>
+        <h1 id="title">CATCH PHRASE</h1>
         <TeamContainer/>
         <CategoriesContainer catButtonHandler={this.catButtonHandler} />
         {this.state.choice !== '' ?
           <Game
             choice={this.state.choice}
-            startGame={this.startGame}
             movies={this.state.movies}
             choseRandom={this.choseRandom}/> : null}
       </div>
