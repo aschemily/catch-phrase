@@ -4,11 +4,12 @@ import CategoryCard from './CategoryCard'
 
 const CategoriesContainer = (props) =>{
   const categories = [
-    'Movies',
-    'Songs',
-    'Celebrities',
-    'Random',
-    'TV Shows'
+    'movies',
+    'tvShows',
+    'songs',
+    'celebrities',
+    'random'
+
   ]
 
   return (
