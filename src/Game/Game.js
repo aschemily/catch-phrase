@@ -1,25 +1,67 @@
 import React, { Component } from 'react';
 import '../Game.css';
 import beep from './beep.mp3'
+import Sound from 'react-sound';
+import songs from '../data/songs'
 
 class Game extends Component {
 
   state = {
-    minutes: '00',
-    seconds: '30',
+    movies: [],
+    tvShows: [],
+    songs: songs,
+    celebrities: [],
+    minutes: '02',
+    seconds: '00',
     timeNumber: 30,
     isOn: false,
     startBtn: true,
     scoreT1: 0,
-    scoreT2: 0
+    scoreT2: 0,
+    displaying: ''
   }
 
-  playAudio = (arg) =>{
-    let audio = new Audio(arg)
-    return audio.play()
+/************** FETCHING MOVIES/SHOWS/celebrities **************/
+  componentDidMount(){
+    for(let i=1; i <11; i++){
+      fetch(`https://api.themoviedb.org/3/discover/movie?api_key=33bbb4eed7c89e4ae3f7aef4072aa7c2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${i}`)
+      .then(r => r.json())
+      .then(r =>{
+        const movieTitles = r.results.map(movie =>{
+
+          return {id: movie.id, title: movie.title, displayed: false}
+        })
+        this.setState({movies:[...this.state.movies,...movieTitles]})
+      })
+    }
+
+    fetch(`http://api.tvmaze.com/shows`)
+    .then(r => r.json())
+    .then(r =>{
+      const tvShowTitles = r.map(tvShow =>{
+        return {id: tvShow.id, title: tvShow.name, displayed: false}
+      })
+      this.setState({tvShows:[...this.state.tvShows,...tvShowTitles]})
+    })
+
+    let artists = songs.map(song=>{
+      const { id, artist: title, displayed}=song
+      return { id, title, displayed }
+    })
+    this.setState({ celebrities: artists})
   }
 
-  newTimer = ()=>{
+
+/* END FETCHING MOVIES/SHOWS */
+
+/************** BEEBING **************/
+playAudio = (arg) =>{
+  let audio = new Audio(arg)
+  return audio.play()
+}
+
+/************** BEEBING **************/
+  beebing = ()=>{
     let timer = 3000;
     let timer2 = 0;
     setInterval(()=>{
@@ -30,13 +72,33 @@ class Game extends Component {
     },1000)
   }
 
+/************** NEXT BUTTON **************/
+  choseRandom = () => {
+    const array = this.state[`${this.props.choice}`]
+    let nonDisplayed = array.filter(ele=> ele.displayed === false)
+    let randomEle = nonDisplayed[Math.floor(Math.random() * (nonDisplayed.length - 1))]
+    randomEle.displayed = true;
+    const newMovies = array.map(movie => {
+      if (movie.id === randomEle.id) {
+        return {...movie, displayed: true}
+      } else {
+        return movie
+      }
+    })
+    this.setState({
+    [`${this.props.choice}`]: newMovies,
+      displaying: randomEle.title
+    })
+  }
+
+/************** START BUTTON **************/
   startTimer = ()=> {
-    this.props.choseRandom()
+    this.choseRandom()
     this.setState({ startBtn: false})
-    this.newTimer()
+    this.beebing()
+    /************** Timer Interval **************/
     this.interval = setInterval(()=>{
       this.setState({ timeNumber: --this.state.timeNumber})
-    //  console.log(this.state.timeNumber);
       if(this.state.seconds < 1 && this.state.minutes > 0 ){
         this.setState({
           minutes: parseInt(this.state.minutes) - 1,
@@ -55,10 +117,11 @@ class Game extends Component {
     },1000)
   }
 
+
+/************** Arrows up and down **************/
   team1UpScore = (e) =>{
     this.playAudio(beep)
     this.setState({scoreT1: ++ this.state.scoreT1 })
-
   }
 
   team2UpScore = (e) =>{
@@ -75,14 +138,9 @@ class Game extends Component {
   }
 
 
-
-
   render() {
-    //console.log(this.state.movies)
-    //console.log('game props',this.props)
     return (
       <div className="Game">
-        <h1> COMING FROM GAME </h1>
         <div className="top">
           <div className="topLeft">
             <img onClick={this.team1UpScore} src={require("./iconUp.png")}/>
@@ -102,7 +160,7 @@ class Game extends Component {
         <div className="middle">
           <div className="middleLeft"> midleLeft </div>
           <div className="middleMiddle">
-            {this.props.choice}
+            {this.state.displaying}
            </div>
           <div className="middleRight"> midleRight </div>
         </div>
@@ -111,8 +169,8 @@ class Game extends Component {
           <div className="bottomLeft"> Bottom Left </div>
           <div className="bottomMiddle">
             {this.state.startBtn == true ?
-            <button onClick={this.startTimer}> Start </button> :
-            <button onClick={()=>this.props.choseRandom()}> Next </button>}
+            <button name="start" onClick={this.startTimer}> Start </button> :
+            <button name="next" onClick={()=>this.choseRandom()}> Next </button>}
           </div>
           <div className="bottomRight"> Bottom Right </div>
         </div>

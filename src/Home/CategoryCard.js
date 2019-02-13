@@ -4,7 +4,7 @@ const CategoryCard = (props) =>{
   //console.log("coming from CatCard", props)
 
   return (
-    <button onClick={e=>props.catButtonHandler(e)}>{props.category}</button>
+    <button name={props.category} onClick={e=>props.catButtonHandler(e)}>{props.category}</button>
 
   )
 }
