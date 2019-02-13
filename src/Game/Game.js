@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import '../Game.css';
 import beep from './beep.mp3'
+import { Modal} from 'semantic-ui-react'
 import Sound from 'react-sound';
 import songs from '../data/songs'
+
 
 class Game extends Component {
 
@@ -137,7 +139,6 @@ playAudio = (arg) =>{
     this.setState({scoreT2: -- this.state.scoreT2 })
   }
 
-
   render() {
     return (
       <div className="Game">
@@ -147,7 +148,7 @@ playAudio = (arg) =>{
             Team 1 Score: {this.state.scoreT1}
             {this.state.scoreT1 > 0 ? <img onClick={this.team1DownScore} src={require("./iconDown.png")}/> : null}
           </div>
-          <div className="topMiddle">
+          <div id="popUp" className="topMiddle">
             <h3 className="timer">{this.state.minutes}:{this.state.seconds}</h3>
           </div>
           <div className="topRight">
@@ -159,19 +160,24 @@ playAudio = (arg) =>{
 
         <div className="middle">
           <div className="middleLeft"> midleLeft </div>
-          <div className="middleMiddle">
+      
+          <div id="popUp" className="middleMiddle">
             {this.state.displaying}
            </div>
+          
           <div className="middleRight"> midleRight </div>
         </div>
 
         <div className="bottom">
           <div className="bottomLeft"> Bottom Left </div>
-          <div className="bottomMiddle">
+          <Modal trigger={
+          <div id="popUp" className="bottomMiddle">
             {this.state.startBtn == true ?
             <button name="start" onClick={this.startTimer}> Start </button> :
             <button name="next" onClick={()=>this.choseRandom()}> Next </button>}
-          </div>
+          </div>} >
+        </Modal>     
+
           <div className="bottomRight"> Bottom Right </div>
         </div>
       </div>

@@ -1,15 +1,19 @@
 import React from 'react';
 import CategoryCard from './CategoryCard'
+import movieIcon from './movieIcon.png'
+import songIcon from './songIcon.png'
+import starIcon from './starIcon.png'
+import randomIcon from './randomIcon.png'
+import tvshowIcon from './tvshowIcon.png'
 
 
 const CategoriesContainer = (props) =>{
   const categories = [
-    'movies',
-    'tvShows',
-    'songs',
-    'celebrities',
-    'random'
-
+    {name: 'movies', img: movieIcon},
+    {name: 'songs', img: songIcon},
+    {name: 'celebrities', img: starIcon},
+    {name:'random', img: randomIcon},
+    {name:'tvShows', img: tvshowIcon}
   ]
 
   return (

@@ -22,8 +22,7 @@ catButtonHandler = (e) => {
         <CategoriesContainer catButtonHandler={this.catButtonHandler} />
         {this.state.choice !== '' ?
           <Game
-            choice={this.state.choice}
-            /> : null}
+            choice={this.state.choice}/> : null}
       </div>
     );
   }
