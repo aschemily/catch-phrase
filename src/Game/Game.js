@@ -80,11 +80,11 @@ playAudio = (arg) =>{
     let nonDisplayed = array.filter(ele=> ele.displayed === false)
     let randomEle = nonDisplayed[Math.floor(Math.random() * (nonDisplayed.length - 1))]
     randomEle.displayed = true;
-    const newMovies = array.map(movie => {
-      if (movie.id === randomEle.id) {
-        return {...movie, displayed: true}
+    const newMovies = array.map(phrase => {
+      if (phrase.id === randomEle.id) {
+        return {...phrase, displayed: true}
       } else {
-        return movie
+        return phrase
       }
     })
     this.setState({
