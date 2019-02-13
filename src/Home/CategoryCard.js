@@ -4,11 +4,7 @@ import { Card, Icon, Image } from 'semantic-ui-react'
 
 
 const CategoryCard = (props) =>{
-  //console.log("coming from CatCard", props.category.img)
-  //src={require("./iconUp.png")}
-  //<img src={require("props.category.img")}/>
-  //  <Button className="ui primary button" onClick={e=>props.catButtonHandler(e)}>{props.category.name}</Button>
-//
+
   return (
     <div id="categoryCard"className="center aligned ui five column grid">
       <div className="column">
