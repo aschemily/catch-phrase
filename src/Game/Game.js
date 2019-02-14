@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../Game.css';
 import beep from './beep.mp3'
-import { Modal} from 'semantic-ui-react'
+import { Modal, Image, Divider, Grid, Segment} from 'semantic-ui-react'
 import Sound from 'react-sound';
 import songs from '../data/songs'
 
@@ -141,46 +141,54 @@ playAudio = (arg) =>{
 
   render() {
     return (
-      <div className="Game">
-        <div className="top">
-          <div className="topLeft">
-            <img onClick={this.team1UpScore} src={require("./iconUp.png")}/>
-            Team 1 Score: {this.state.scoreT1}
-            {this.state.scoreT1 > 0 ? <img onClick={this.team1DownScore} src={require("./iconDown.png")}/> : null}
-          </div>
-          <div id="popUp" className="topMiddle">
-            <h3 className="timer">{this.state.minutes}:{this.state.seconds}</h3>
-          </div>
-          <div className="topRight">
-          <img onClick={this.team2UpScore} src={require("./iconUp.png")}/>
-          Team 2 Score: {this.state.scoreT2}
-          {this.state.scoreT2 > 0 ?<img onClick={this.team2DownScore} src={require("./iconDown.png")}/> : null}a
+      <Grid container stackable columns={4} centered>
+        <div className="Game ui grid">
+          <Grid.Row centered columns={'equal'} verticalAlign='top' >
+             <Grid.Column id="team">
+
+                      <Image onClick={this.team1UpScore} src={require("./iconUpBig.png")} avatar/>
+                      <span>Team 1 Score: {this.state.scoreT1} </span>
+                      {this.state.scoreT1 > 0 ? <Image onClick={this.team1DownScore} src={require("./iconDownBig.png")} avatar/> : null}
+
+            </Grid.Column>
+
+
+            <Grid.Column>
+                  <h3 id="timer" className="timer">{this.state.minutes}:{this.state.seconds}</h3>
+            </Grid.Column>
+
+            <Grid.Column id="team">
+
+                  <Image onClick={this.team2UpScore} src={require("./iconUpBig.png")} avatar/>
+                  <span>Team 2 Score: {this.state.scoreT2}</span>
+                  {this.state.scoreT2 > 0 ?<Image onClick={this.team2DownScore} src={require("./iconDownBig.png")} avatar/> : null}
+
+           </Grid.Column>
+
+         </Grid.Row>
+
+
+       <Grid.Row>
+         <Grid.Column>
+            <div id="phrase" >
+              {this.state.displaying}
+             </div>
+           </Grid.Column>
+        </Grid.Row>
+
+          <Grid.Row>
+            <Grid.Column>
+                <div id="popUp" >
+                  {this.state.startBtn == true ?
+                  <button class="massive ui button green" name="start" onClick={this.startTimer}> Start </button> :
+                  <button class="massive ui button orange" name="next" onClick={()=>this.choseRandom()}> Next </button>}
+                </div>
+            </Grid.Column>
+          </Grid.Row>
         </div>
-        </div>
 
-        <div className="middle">
-          <div className="middleLeft"> midleLeft </div>
+      </Grid>
 
-          <div id="popUp" className="middleMiddle">
-            {this.state.displaying}
-           </div>
-
-          <div className="middleRight"> midleRight </div>
-        </div>
-
-        <div className="bottom">
-          <div className="bottomLeft"> Bottom Left </div>
-
-          <div id="popUp" className="bottomMiddle">
-            {this.state.startBtn == true ?
-            <button name="start" onClick={this.startTimer}> Start </button> :
-            <button name="next" onClick={()=>this.choseRandom()}> Next </button>}
-          </div>} 
-
-
-          <div className="bottomRight"> Bottom Right </div>
-        </div>
-      </div>
     );
   }
 }

@@ -16,11 +16,14 @@ catButtonHandler = (e) => {
     this.setState({ choice: e.target.name })
     : alert("please click the image")
 }
-
+  //  <img src={require("./splash.png")}/>
   render() {
     return (
       <div className="Home">
-        <h1>CATCH PHRASE</h1>
+        <div class="header">
+
+        <h1 id="title">CATCH PHRASE</h1>
+        </div>
         <CategoriesContainer catButtonHandler={this.catButtonHandler} />
         {this.state.choice !== '' ?
           <Game
