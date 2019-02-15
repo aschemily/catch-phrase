@@ -26,9 +26,21 @@
   color: #61dafb;
 }
 
-#title{
+/* .header img{
+  float: left;
+  width: 100vw;
+  height: 100vh;
+  background: #555;
+
+
+} */
+
+.header h1{
   font-family: 'Shadows Into Light', cursive;
   font-size: 100px;
+  position: relative;
+  top: 18px;
+  left: 10px;
   animation: color-animation 3s infinite linear alternate;
 }
 

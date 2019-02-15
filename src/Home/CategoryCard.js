@@ -11,8 +11,8 @@ const CategoryCard = (props) =>{
     <Card name={props.category.name} itemsPerRow={10} onClick={e=>props.catButtonHandler(e)}>
     <Card.Content  name={props.category.name} >
       <Card.Header name={props.category.name}>
-        <Image name={props.category.name} size="large" src={props.category.img} />
-        {props.category.name}
+        <Image name={props.category.name} size="mini" src={props.category.img} />
+        <Card.Content>{props.category.name}</Card.Content>
       </Card.Header>
     </Card.Content>
   </Card>
