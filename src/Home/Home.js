@@ -31,6 +31,7 @@ catButtonHandler = (e) => {
         </h6>
     
         </div>
+        <h1 id="title">CATCH PHRASE</h1>
         <CategoriesContainer catButtonHandler={this.catButtonHandler} />
         {this.state.choice !== '' ?
           <Game
