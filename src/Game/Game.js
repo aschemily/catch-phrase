@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import '../Game.css';
 import beep from './beep.mp3'
+import beep2 from './beep2.mp3'
+import final from './final.mp3'
 import { Modal, Image, Divider, Grid, Segment} from 'semantic-ui-react'
 import Sound from 'react-sound';
 import songs from '../data/songs'
+import random from '../data/random'
 
 
 class Game extends Component {
@@ -13,6 +16,7 @@ class Game extends Component {
     tvShows: [],
     songs: songs,
     celebrities: [],
+    random:random,
     minutes: '02',
     seconds: '00',
     timeNumber: 30,
@@ -59,26 +63,45 @@ class Game extends Component {
 /************** BEEBING **************/
 playAudio = (arg) =>{
   let audio = new Audio(arg)
+  //audio.loop = true
   return audio.play()
 }
 
 /************** BEEBING **************/
-  beebing = ()=>{
-    let timer = 3000;
-    let timer2 = 0;
-    setInterval(()=>{
-      timer2 = timer2 + 100
-      setInterval(()=>{
-        this.playAudio(beep)
-      }, (timer - timer2))
-    },1000)
-  }
+
+  //STARTS AND GOES ON THE SECOND
+  // beebing = ()=>{
+  // let interval = setInterval(()=>{
+  //     this.playAudio(beep2)
+  //   },1000)
+  // }
+
+  // speedBeep = ()=>{
+  //   setInterval(()=>{
+  //
+  //   })
+  // }
+
+
+//WORKING BELOW
+  // beebing = ()=>{
+  //   let timer = 1000;
+  //   let timer2 = 0;
+  //   setInterval(()=>{
+  //     timer2 = timer2 + 0
+  //     setInterval(()=>{
+  //       this.playAudio(beep2)
+  //     }, (timer - timer2))
+  //   },10000)
+  // }
+
 
 /************** NEXT BUTTON **************/
   choseRandom = () => {
     const array = this.state[`${this.props.choice}`]
     let nonDisplayed = array.filter(ele=> ele.displayed === false)
     let randomEle = nonDisplayed[Math.floor(Math.random() * (nonDisplayed.length - 1))]
+
     randomEle.displayed = true;
     const newMovies = array.map(phrase => {
       if (phrase.id === randomEle.id) {
@@ -97,16 +120,31 @@ playAudio = (arg) =>{
   startTimer = ()=> {
     this.choseRandom()
     this.setState({ startBtn: false})
-    this.beebing()
+    let speed = 1000
+
+    let interval = setInterval(()=>{
+        this.playAudio(beep2)
+      },1000)
+
     /************** Timer Interval **************/
     this.interval = setInterval(()=>{
       this.setState({ timeNumber: --this.state.timeNumber})
       if(this.state.seconds < 1 && this.state.minutes > 0 ){
+          clearInterval(interval)
+
+          var interval2 = setInterval(()=>{
+              // speed = speed - 200
+              this.playAudio(beep2)
+            },500)
+
         this.setState({
           minutes: parseInt(this.state.minutes) - 1,
           seconds: 59,
         })
+
       }else if(this.state.seconds > 0 && this.state.minutes >= 0 ){
+
+
         this.setState({
           seconds: parseInt(this.state.seconds) - 1
         })
@@ -114,6 +152,11 @@ playAudio = (arg) =>{
         this.setState({
           isOn: false,
         })
+        var interval3 = setInterval(()=>{
+            this.playAudio(final)
+            clearInterval(interval3)
+          },0)
+        clearInterval(this.interval2);
         clearInterval(this.interval);
       }
     },1000)
@@ -140,31 +183,28 @@ playAudio = (arg) =>{
   }
 
   render() {
+
     return (
       <Grid container stackable columns={4} centered>
         <div className="Game ui grid">
-          <Grid.Row centered columns={'equal'} verticalAlign='top' >
+          <Grid.Row className="top" centered columns={'equal'} verticalAlign='top'>
+
              <Grid.Column id="team">
-
-                      <Image onClick={this.team1UpScore} src={require("./iconUpBig.png")} avatar/>
-                      <span>Team 1 Score: {this.state.scoreT1} </span>
-                      {this.state.scoreT1 > 0 ? <Image onClick={this.team1DownScore} src={require("./iconDownBig.png")} avatar/> : null}
-
+                <Image onClick={this.team1UpScore} src={require("./iconUpBig.png")} avatar/>
+                <span>Team 1 Score: {this.state.scoreT1} </span>
+                {this.state.scoreT1 > 0 ? <Image  onClick={this.team1DownScore} src={require("./iconDownBig.png")} avatar/> : null}
             </Grid.Column>
 
-
-            <Grid.Column>
-                  <h3 id="timer" className="timer">{this.state.minutes}:{this.state.seconds}</h3>
+            <Grid.Column id="timer">
+              <span>{this.state.minutes}:{this.state.seconds}</span>
             </Grid.Column>
+
 
             <Grid.Column id="team">
-
-                  <Image onClick={this.team2UpScore} src={require("./iconUpBig.png")} avatar/>
-                  <span>Team 2 Score: {this.state.scoreT2}</span>
-                  {this.state.scoreT2 > 0 ?<Image onClick={this.team2DownScore} src={require("./iconDownBig.png")} avatar/> : null}
-
-           </Grid.Column>
-
+              <Image onClick={this.team2UpScore} src={require("./iconUpBig.png")} avatar/>
+              <span>Team 2 Score: {this.state.scoreT2}</span>
+              {this.state.scoreT2 > 0 ?<Image onClick={this.team2DownScore} src={require("./iconDownBig.png")} avatar/> : null}
+            </Grid.Column>
          </Grid.Row>
 
 
