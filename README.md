@@ -4,7 +4,7 @@ Catch Phrase is a single page web application based on the original game Catch P
 
 ### Technologies 
 
-Catch Phrase is a frontend application with no backend. Additional frameworks and libraries used include: 
+Catch Phrase is a frontend application with no backend. Additional dependencies include: 
 
 - Semantic UI 
 - MovieDB API 
