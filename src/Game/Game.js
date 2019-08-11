@@ -17,8 +17,8 @@ class Game extends Component {
     songs: songs,
     celebrities: [],
     random:random,
-    minutes: '02',
-    seconds: '00',
+    minutes: '1',
+    seconds: '10',
     timeNumber: 30,
     isOn: false,
     startBtn: true,
@@ -159,13 +159,16 @@ playAudio = (arg) =>{
         clearInterval(this.interval2);
         clearInterval(this.interval);
       }
+    
     },1000)
+    // clearInterval(this.interval2);
+    // clearInterval(this.interval);
   }
 
 
 /************** Arrows up and down **************/
   team1UpScore = (e) =>{
-    this.playAudio(beep)
+
     this.setState({scoreT1: ++ this.state.scoreT1 })
   }
 
