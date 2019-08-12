@@ -1,18 +1,91 @@
 
 .Game div {
-  border: 1px solid #000;
-  width: 100%;
+  /* border: 1px solid #000; */
+  width: 100vw;
   display: flex;
-  margin: 0;
+  flex-wrap: nowrap;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  margin-right: 50px;
+  margin-left: 50px;
 }
 
-.topMiddle, .middleMiddle, .bottomMiddle {
+img {
+  height: 55px;
+  width:55px;
+  vertical-align: middle;
+  margin: 10px;
+  display:inline;
+}
+
+#popUp{
+  font-size: 30px;
+  display: inline;
+}
+
+
+#team{
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  line-height: normal;
+}
+#timer{
+/* transform: scale(.8); */
+line-height: normal;
+display: inline;
+font-size:95px;
+font-family: 'Luckiest Guy', cursive;
+text-shadow: 2px 7px #cef4c8;
+color:black;
+/* border-radius: 10px;
+padding:400px 30px 30px 30px; */
+
+}
+
+
+#phrase{
+  font-family: 'Luckiest Guy', cursive;
+  font-size:90px;
+  display: inline;
+  line-height: normal;
+}
+
+/* @keyframes blinking {
+  0% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes shadowFade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
+.blink {
+  animation: blinking .5s infinite
+} */
+
+/* .topMiddle, .middleMiddle, .bottomMiddle {
   flex: 4;
   height: 40px;
   justify-content: center;
   vertical-align: inherit;
-  /* display: inline; */
-}
+  display: inline;
+  }
 
 .topLeft, .middleLeft, .bottomLeft {
   flex: 1;
@@ -31,15 +104,9 @@
 .timer {
   font-size: 1.5em;
   margin: 0;
-}
+} */
 
-img {
-  height: 16px;
-  width: 16px;
-  vertical-align: middle;
-  margin: 4px;
-  
-}
+
 /******************* End of Middle *******************/
 
 

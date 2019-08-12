@@ -3,86 +3,39 @@ import Nav from './Nav'
 import TeamContainer from './TeamContainer'
 import CategoriesContainer from './CategoriesContainer'
 import Game from '../Game/Game'
-import Sound from 'react-sound';
-import songs from '../data/songs'
-
-//import { BrowserRouter as Router, Route, Link} from 'react-router-dom'
 
 class Home extends Component {
   state = {
-    movies: [],
-    tvShows: [],
-    songs: songs,
-    celebrities: songs,
     choice:'',
     PLAYING: true
   }
 
-
-
-  componentDidMount(){
-    for(let i=1; i <11; i++){
-      fetch(`https://api.themoviedb.org/3/discover/movie?api_key=33bbb4eed7c89e4ae3f7aef4072aa7c2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${i}`)
-      .then(r => r.json())
-      .then(r =>{
-        const movieTitles = r.results.map(movie =>{
-
-          return {id: movie.id, title: movie.title, displayed: false}
-        })
-        this.setState({movies:[...this.state.movies,...movieTitles]})
-      })
-    }
-
-    fetch(`http://api.tvmaze.com/shows`)
-    .then(r => r.json())
-    .then(r =>{
-      const tvShowTitles = r.map(tvShow =>{
-        return {id: tvShow.id, title: tvShow.name, displayed: false}
-      })
-      this.setState({tvShows:[...this.state.tvShows,...tvShowTitles]})
-    })
-  }
-
-  catButtonHandler = (e) => {
-    this.setState({ choice: e.target.innerText })
-  }
-
-  choseRandom = () => {
-    let nonDisplayed = this.state.movies.filter(ele=>{ return ele.displayed === false})
-    let randomEle = nonDisplayed[Math.floor(Math.random() * (nonDisplayed.length - 1))]
-    //console.log(randomEle)
-    randomEle.displayed = true;
-    // console.log(this.state.movies.indexOf(randomEle));
-    const newMovies = this.state.movies.map(movie => {
-      if (movie.id === randomEle.id) {
-        return {...movie, displayed: true}
-      } else {
-        return movie
-      }
-    })
-    //console.log(this.state.movies);
-    // debugger
-    this.setState({
-      movies: newMovies,
-      choice: randomEle.title
-    })
-  }
-
-
-
+/************** HANDLER CATEGORIES BUTTONS **************/
+catButtonHandler = (e) => {
+  e.target.name ?
+    this.setState({ choice: e.target.name })
+    : alert("please click the image")
+}
+  //  <img src={require("./splash.png")}/>
   render() {
-  //  console.log('songs',this.state.tvShows)
     return (
       <div className="Home">
-        <h1>CATCH PHRASE</h1>
-        <TeamContainer/>
+        <div class="header">
+
+        <h1 id="title">CATCH PHRASE</h1>
+        <h3>How To Play:</h3>
+        <h6>
+          One team starts by pressing the start button where a phrase will pop up. Get your teammate to guess the phrase as quickly as possible. Then hand the buzzer to the person on your right.
+          You can make any gesture or say anything except the words displayed.
+          If you hold the buzzer when the buzzer goess off your team loses that round.
+        </h6>
+    
+        </div>
+        <h1 id="title">CATCH PHRASE</h1>
         <CategoriesContainer catButtonHandler={this.catButtonHandler} />
         {this.state.choice !== '' ?
           <Game
-            choice={this.state.choice}
-            startGame={this.startGame}
-            movies={this.state.movies}
-            choseRandom={this.choseRandom}/> : null}
+            choice={this.state.choice}/> : null}
       </div>
     );
   }
